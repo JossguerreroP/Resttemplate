@@ -62,6 +62,6 @@ public class BrewerClient {
     }
 
     public void deleteCustomer(UUID randomUUID){
-        restTemplate.delete(apihost + CUSTOMER_PATH_V1);
+        restTemplate.delete(apihost + CUSTOMER_PATH_V1 + "");
     }
 }

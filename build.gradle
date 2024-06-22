@@ -21,6 +21,17 @@ configurations {
 
 repositories {
     mavenCentral()
+    maven {
+        url "https://repo.spring.io/snapshot"
+        name = "Spring Snapshots"
+        mavenContent {
+            snapshotsOnly()
+        }
+    }
+    maven {
+        url "https://repo.spring.io/milestone"
+        name = "Spring Milestones"
+    }
 }
 
 dependencies {
@@ -29,8 +40,11 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation ('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'junit', module: 'junit'
+    }
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.mockito:mockito-junit-jupiter'
 }
 
 tasks.named('test') {

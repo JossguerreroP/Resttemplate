@@ -18,6 +18,7 @@ public class BrewerClient {
 
     public final String BEER_PATH_V1 = "/api/v1/beer/";
     public final String CUSTOMER_PATH_V1 = "/api/v1/customer";
+    public final String BEER_PATH_V2 = "/api/v1/beer";
 
     private  final RestTemplate restTemplate;
     private String apihost;
@@ -38,7 +39,7 @@ public class BrewerClient {
 
     public URI saveNewBeer(BeerDto beerDto){
 
-        return restTemplate.postForLocation(apihost + BEER_PATH_V1, beerDto);
+        return restTemplate.postForLocation(apihost + BEER_PATH_V2, beerDto);
     }
 
     public void updateBeer(UUID uuid , BeerDto beerDto){
@@ -62,6 +63,6 @@ public class BrewerClient {
     }
 
     public void deleteCustomer(UUID randomUUID){
-        restTemplate.delete(apihost + CUSTOMER_PATH_V1 + "");
+        restTemplate.delete(apihost + CUSTOMER_PATH_V1 + "/" + randomUUID);
     }
 }
